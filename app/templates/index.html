@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anime Image Upscaler · Animalfox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Sofia+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
+  <a class="skip" href="#stage" data-i18n="a11y.skip">Skip to uploader</a>
+
+  <div class="app">
+    <header class="hero">
+      <div class="hero__brand">
+        <p class="hero__kicker">Animalfox</p>
+        <h1 class="hero__title">Anime Image Upscaler</h1>
+        <p class="hero__sub" data-i18n="brand.sub">RealESRGAN Anime 6B · 4× · anti-shakal mode</p>
+      </div>
+      <div class="hero__badge" id="status" data-i18n="foot.loading">model loads on first request</div>
+    </header>
+
+    <main class="board" id="stage" aria-live="polite">
+      <div
+        class="drop"
+        id="dropzone"
+        role="button"
+        tabindex="0"
+        data-i18n-attr="aria-label:drop.aria"
+        aria-label="Upload an image to upscale"
+      >
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/bmp,image/gif" hidden />
+
+        <div class="drop__mascot" aria-hidden="true">
+          <div class="sticker">
+            <img src="/static/art/stickers/enhance.png" alt="" />
+          </div>
+          <div class="pixel pixel--a"></div>
+          <div class="pixel pixel--b"></div>
+          <div class="pixel pixel--c"></div>
+        </div>
+
+        <div class="drop__copy">
+          <p class="drop__title" data-i18n="drop.title">Time to ENHANCE!</p>
+          <p class="drop__hint" data-i18n="drop.hint">PNG · JPEG · WebP · BMP · GIF · up to 25 MB</p>
+          <button type="button" class="btn" id="pickBtn" data-i18n="drop.pick">Choose file</button>
+          <p class="drop__alt" data-i18n="drop.secondary">or drop an image right here</p>
+        </div>
+      </div>
+
+      <div class="result is-hidden" id="compare">
+        <div class="viewer" id="compareFrame">
+          <img class="viewer__after" id="afterImg" data-i18n-attr="alt:compare.afterAlt" alt="After upscale" draggable="false" />
+          <div class="viewer__before-wrap" id="beforeWrap">
+            <img class="viewer__before" id="beforeImg" data-i18n-attr="alt:compare.beforeAlt" alt="Before upscale" draggable="false" />
+          </div>
+          <div
+            class="viewer__handle"
+            id="handle"
+            role="slider"
+            data-i18n-attr="aria-label:compare.slider"
+            aria-label="Before and after comparison"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="50"
+            aria-valuetext="50%"
+            tabindex="0"
+          >
+            <span class="viewer__rule" aria-hidden="true"></span>
+            <span class="viewer__knob" aria-hidden="true"></span>
+          </div>
+          <span class="viewer__label viewer__label--before" data-i18n="compare.before">Before</span>
+          <span class="viewer__label viewer__label--after" data-i18n="compare.after">After</span>
+        </div>
+
+        <div class="dock">
+          <div class="dock__mascot" aria-hidden="true">
+            <div class="sticker sticker--sm">
+              <img src="/static/art/stickers/win.png" alt="" />
+            </div>
+          </div>
+          <div class="dock__main">
+            <p class="dock__hint" data-i18n="compare.hint">Drag the divider · click · ← →</p>
+            <p class="dock__meta" id="meta"></p>
+            <div class="dock__actions">
+              <button type="button" class="btn btn--ghost" id="againBtn" data-i18n="actions.again">New image</button>
+              <a class="btn" id="downloadBtn" href="#" download data-i18n="actions.download">Download PNG</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="busy is-hidden" id="busy" role="status" aria-live="assertive">
+        <div class="sticker sticker--sm" aria-hidden="true">
+          <img src="/static/art/stickers/mine.png" alt="" />
+        </div>
+        <p class="busy__title" data-i18n="busy">Mining resolution…</p>
+        <p class="busy__sub" data-i18n="busy.sub">First run can be longer — model is waking up</p>
+        <div class="busy__bar" aria-hidden="true"><span></span></div>
+      </div>
+    </main>
+
+    <div class="toast is-hidden" id="toast" role="alert" aria-live="assertive">
+      <div class="toast__mascot" aria-hidden="true">
+        <div class="sticker sticker--xs">
+          <img src="/static/art/stickers/vram.png" alt="" />
+        </div>
+      </div>
+      <p class="toast__text" id="toastText"></p>
+      <button type="button" class="toast__close" id="toastClose" data-i18n="error.dismiss">Dismiss</button>
+    </div>
+
+    <footer class="legal">
+      <p class="legal__text" data-i18n-html="credits.legal">
+        Model <span lang="en">RealESRGAN_x4plus_anime_6B</span> —
+        <a href="https://github.com/xinntao/Real-ESRGAN" rel="noopener noreferrer" target="_blank">xinntao/Real-ESRGAN</a>,
+        BSD-3-Clause. Not affiliated.
+        <a href="/NOTICE">NOTICE</a> · <a href="/LICENSE">MIT</a>
+      </p>
+    </footer>
+  </div>
+
+  <script src="/static/i18n.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
