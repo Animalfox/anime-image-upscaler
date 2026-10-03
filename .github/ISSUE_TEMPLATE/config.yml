@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/Animalfox/anime-image-upscaler/security/advisories/new
+    about: Privately report a vulnerability (do not open a public issue).

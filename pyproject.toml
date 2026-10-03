@@ -1,0 +1,48 @@
+[project]
+name = "anime-image-upscaler"
+version = "0.1.0"
+description = "Web UI for 4× anime image upscaling with RealESRGAN_x4plus_anime_6B"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+authors = [{ name = "Animalfox" }]
+keywords = ["anime", "upscaler", "realesrgan", "fastapi", "image-restoration"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Multimedia :: Graphics",
+  "Framework :: FastAPI",
+]
+dependencies = [
+  "fastapi>=0.142.0",
+  "uvicorn[standard]>=0.54.0",
+  "python-multipart>=0.0.32",
+  "pillow>=12.0.0",
+  "torch>=2.14.0",
+  "torchvision>=0.29.0",
+  "spandrel>=0.4.2",
+  "aiofiles>=25.1.0",
+  "numpy>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Animalfox/anime-image-upscaler"
+Issues = "https://github.com/Animalfox/anime-image-upscaler/issues"
+Changelog = "https://github.com/Animalfox/anime-image-upscaler/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
